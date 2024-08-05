@@ -11,7 +11,7 @@ export const getContactById = async (contactId) => {
 };
 
 export const createContact = async (payload) => {
-  const contact = await ContactsCollection.createSearchIndex(payload);
+  const contact = await ContactsCollection.create(payload);
   return contact;
 };
 
@@ -21,8 +21,9 @@ export const deleteContact = async (contactId) => {
   });
   return contact;
 };
+
 export const updateContact = async (contactId, payload, options = {}) => {
-  const rawResult = await ContactsCollection.findOneAndUpdate(
+  const rawResult = await ContactsCollection.findByIdAndUpdate(
     { _id: contactId },
     payload,
     {
