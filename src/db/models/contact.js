@@ -24,9 +24,10 @@ const contactSchema = new Schema(
       required: true,
       default: 'personal',
     },
-    parentId: {
+    userId: {
       type: Schema.Types.ObjectId,
-      ref: 'users',
+      ref: 'user',
+      required: true,
     },
   },
   {
@@ -36,4 +37,3 @@ const contactSchema = new Schema(
 );
 
 export const ContactsCollection = model('contacts', contactSchema);
-export default ContactsCollection;
