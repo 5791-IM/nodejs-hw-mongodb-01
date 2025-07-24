@@ -1,3 +1,4 @@
+
 import { registerUser } from '../services/auth';
 
 export const registerController = async (req, res) => {
@@ -7,5 +8,7 @@ export const registerController = async (req, res) => {
     status: 201,
     message: 'User registered successfully',
     data: user,
+
+
   });
 };

@@ -1,6 +1,8 @@
+
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema(
+
   {
     name: {
       type: String,
@@ -16,16 +18,16 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
   },
-  {
-    timestamps: true,
-    versionKey: false,
-  },
+
+  { timestamps: true, versionKey: false },
 );
 
 userSchema.method.toJSON = function () {
+
   const obj = this.toObject();
   delete obj.password;
   return obj;
 };
+
 
 export const User = mongoose.model('User', userSchema);
