@@ -12,6 +12,7 @@ import { validateBody } from '../middlewares/validateBody.js';
 import { createContactSchema } from '../validation/students.js';
 import { updateContactSchema } from '../validation/students.js';
 import { isValidId } from '../middlewares/isValidId.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const contactsRouter = Router();
 
@@ -41,5 +42,9 @@ contactsRouter.patch(
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
+
+contactsRouter.use(authenticate);
+
+contactsRouter.get('/', ctrlWrapper(getContactsController));
 
 export default contactsRouter;
