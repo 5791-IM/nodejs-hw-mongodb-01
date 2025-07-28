@@ -31,15 +31,15 @@ export const setupServer = () => {
     }),
   );
 
-  app.get('/', (req, res) => {
-    res.json({
-      message: 'Hello World!',
-    });
-  });
+  // app.get('/', (req, res) => {
+  //   res.json({
+  //     message: 'Hello World!',
+  //   });
+  // });
 
   app.use(router);
 
-  app.use('*', notFoundHandler);
+  app.use(notFoundHandler);
 
   app.use(errorHandler);
 
