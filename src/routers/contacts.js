@@ -36,6 +36,6 @@ contactsRouter.patch(
   ctrlWrapper(patchContactController),
 );
 
-contactsRouter.use(authenticate);
+// contactsRouter.use(authenticate);
 
 export default contactsRouter;
