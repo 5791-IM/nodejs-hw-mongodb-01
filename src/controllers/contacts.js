@@ -10,8 +10,6 @@ import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 
 export const createContactController = async (req, res) => {
-  console.log('req.user ===>', req.user);
-
   const contact = await createContact({
     ...req.body,
     userId: req.user._id,
@@ -59,8 +57,8 @@ export const getContactByIdController = async (req, res) => {
 };
 
 export const deleteContactController = async (req, res) => {
-  const { id } = req.params;
-  const result = await deleteContact(id, req.user._id);
+  const { contactId } = req.params;
+  const result = await deleteContact(contactId, req.user._id);
 
   if (!result) {
     throw createHttpError.NotFound('Contact not found');
@@ -73,8 +71,8 @@ export const deleteContactController = async (req, res) => {
 };
 
 export const patchContactController = async (req, res) => {
-  const { id } = req.params;
-  const result = await updateContact(id, req.user._id, req.body);
+  const { contactId } = req.params;
+  const result = await updateContact(contactId, req.user._id, req.body);
 
   if (!result) {
     throw createHttpError.NotFound('Contact not found');

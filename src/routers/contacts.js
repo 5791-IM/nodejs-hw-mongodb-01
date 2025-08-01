@@ -18,7 +18,12 @@ const contactsRouter = Router();
 
 contactsRouter.get('/', ctrlWrapper(getContactsController));
 
-contactsRouter.get('/:Id', isValidId, ctrlWrapper(getContactByIdController));
+contactsRouter.get(
+  '/:contactId',
+  authenticate,
+  isValidId,
+  ctrlWrapper(getContactByIdController),
+);
 
 contactsRouter.post(
   '/',
@@ -27,15 +32,19 @@ contactsRouter.post(
   ctrlWrapper(createContactController),
 );
 
-contactsRouter.delete('/:Id', isValidId, ctrlWrapper(deleteContactController));
+contactsRouter.delete(
+  '/:contactId',
+  authenticate,
+  isValidId,
+  ctrlWrapper(deleteContactController),
+);
 
 contactsRouter.patch(
-  '/:Id',
+  '/:contactId',
+  authenticate,
   isValidId,
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
-
-// contactsRouter.use(authenticate);
 
 export default contactsRouter;
