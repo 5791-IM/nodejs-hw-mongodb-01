@@ -4,12 +4,14 @@ import {
   logoutUser,
   refreshSession,
   registerUser,
+  requestResetToken,
 } from '../services/auth.js';
 
 export const registerController = async (req, res) => {
   const user = await registerUser(req.body);
 
-  const { password: _password, ...userData } = user.toObject();
+  // eslint-disable-next-line no-unused-vars
+  const { password: password, ...userData } = user.toObject();
 
   res.status(201).json({
     status: 201,
@@ -76,5 +78,14 @@ export const refreshSessionController = async (req, res) => {
     data: {
       accessToken: session.accessToken,
     },
+  });
+};
+
+export const sendResetEmailController = async (req, res) => {
+  await requestResetToken(req.body.email);
+  res.json({
+    message: 'Reset password email was successfully sent!',
+    stetus: 200,
+    data: {},
   });
 };
