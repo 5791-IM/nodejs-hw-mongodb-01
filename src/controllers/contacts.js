@@ -8,11 +8,19 @@ import {
 import createHttpError from 'http-errors';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 
 export const createContactController = async (req, res) => {
+  let photoUrl = null;
+
+  if (req.file) {
+    photoUrl = await saveFileToCloudinary(req.file);
+  }
+
   const contact = await createContact({
     ...req.body,
     userId: req.user._id,
+    photo: photoUrl,
   });
 
   res.status(201).json({
@@ -72,7 +80,16 @@ export const deleteContactController = async (req, res) => {
 
 export const patchContactController = async (req, res) => {
   const { contactId } = req.params;
-  const result = await updateContact(contactId, req.user._id, req.body);
+  let photoUrl = req.body.photo || null;
+
+  if (req.file) {
+    photoUrl = await saveFileToCloudinary(req.file);
+  }
+
+  const result = await updateContact(contactId, req.user._id, {
+    ...req.body,
+    photo: photoUrl,
+  });
 
   if (!result) {
     throw createHttpError.NotFound('Contact not found');
@@ -81,6 +98,6 @@ export const patchContactController = async (req, res) => {
   res.json({
     status: 200,
     message: 'Successfully patched a contact!',
-    data: result,
+    data: result.contact,
   });
 };
