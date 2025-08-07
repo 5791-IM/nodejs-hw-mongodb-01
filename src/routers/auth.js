@@ -34,13 +34,13 @@ authRouter.post('/logout', ctrlWrapper(logoutController));
 authRouter.post('/refresh', ctrlWrapper(refreshSessionController));
 
 authRouter.post(
-  '/auth/send-reset-email',
+  '/send-reset-email',
   validateBody(sendResetEmailSchema),
   ctrlWrapper(sendResetEmailController),
 );
 
 authRouter.post(
-  '/auth/reset-pwd',
+  '/reset-pwd',
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordController),
 );
