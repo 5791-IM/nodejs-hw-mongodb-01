@@ -1,0 +1,63 @@
+# swagger/components/schemas/student.yaml
+
+type: object
+required:
+  - _id
+  - name
+  - phoneNumber
+  - contactType
+  - userId
+properties:
+  _id:
+    description: Contact id
+    type: string
+    example: 65e4decdd286b30065d54af9
+
+  name:
+    description: Contact name
+    type: string
+    example: Joun Dohe
+
+  phoneNumber:
+    description: Contact phone number
+    type: string
+    example: +380123456789
+
+  email:
+    description: contact email
+    type: string
+    example: joun@example.com
+
+  isFavourite:
+    description: Would you like or not?
+    type: boolean
+    example: false
+
+  contactType:
+    description: Contact work place
+    type: string
+    example: work
+    enum: ['work', 'home', 'personal']
+    default: personal
+
+  userId:
+    description: Contact userId id
+    type: string
+    example: 65e4decdd286b30065d54af9
+
+  photo:
+    description: Link to contact photo
+    type: string
+    example: null
+
+  createdAt:
+    description: Date when the contact was created
+    type: string
+    format: date-time
+    example: 2025-08-11T12:34:56.000Z
+
+  updatedAt:
+    description: Date when the contact was last updated
+    type: string
+    format: date-time
+    example: 2025-08-11T12:34:56.000Z
