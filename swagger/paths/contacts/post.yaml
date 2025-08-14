@@ -33,6 +33,11 @@ requestBody:
             type: string
             example: 'joun@example.com'
 
+          isFavourite:
+            description: Would you like or not?
+            type: boolean
+            example: false
+
           contactType:
             description: "Contact's work place"
             type: string
@@ -64,5 +69,5 @@ responses:
               example: Successfully created a contact!
             data:
               $ref: ../../components/schemas/contact.yaml
-  '401':
-    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'

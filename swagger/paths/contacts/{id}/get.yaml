@@ -24,7 +24,7 @@ responses:
           required:
             - status
             - message
-            # - data
+            - data
           properties:
             status:
               type: integer
