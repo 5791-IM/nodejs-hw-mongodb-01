@@ -5,15 +5,14 @@ operationId: updateContact
 security:
   - bearerAuth: []
 parameters:
-  - name: id
-    in: path
+  - in: path
+    name: id
     required: true
     schema:
       type: string
-    description: Contact's unique ID
-    example: 65e4decdd286b30065d54af9
+      description: Contact's unique ID
+      example: 65e4decdd286b30065d54af9
 requestBody:
-  required: true
   content:
     multipart/form-data:
       schema:
