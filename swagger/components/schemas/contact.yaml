@@ -48,16 +48,4 @@ properties:
   photo:
     description: Link to contact photo
     type: string
-    example: null
-
-  createdAt:
-    description: Date when the contact was created
-    type: string
-    format: date-time
-    example: 2025-08-11T12:34:56.000Z
-
-  updatedAt:
-    description: Date when the contact was last updated
-    type: string
-    format: date-time
-    example: 2025-08-11T12:34:56.000Z
+    format: binary
